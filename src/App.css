@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.app {
+  /* max-width: 800px; */
+  margin: 20px auto;
+  /* padding: 40px; */
+  background: #fff;
+  /* box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12); */
+  border-radius: 2px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  /* font-family: '__inter_44a959', '__inter_Fallback_44a959'; */
+}
+
+/* .title {
+  margin-left: 32px;
+} */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  margin-bottom: 24px;
+}
+
+.faq-editor {
+  min-height: 500px;
+  position: relative;
+}
+
+.faq-item {
+  margin: 16px 0;
+  padding: 16px;
+  /* box-shadow: 0 3px 5px rgba(0, 0, 0, 0.12); */
+  position: relative;
+  /* transition: background-color 0.2s; */
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.remove-btn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 8px;
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.faq-item:hover .remove-btn {
+  opacity: 1;
+}
+
+.remove-btn:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+[data-type="question"] {
+  /* font-weight: bold; */
+  font-weight: 600;
+  font-size: 18px;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  line-height: 24px;
+  letter-spacing: -0.26px;
+  /* box-sizing: border-box;  */
+  /* border-bottom: 1px solid #000; */
+}
+
+.answer-content {
+  color: #252525;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  margin-left: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1.35rem;
+}
+  
+.add-btn {
+  background: #515355;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 16px;
+  float: right;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #151616;
+}
+
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.faq-item-content {
+  margin-top: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* .question-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #d41b1b;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #1a237e;
+} */
+
+.faq-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .question-wrapper, .answer-wrapper {    //TODO 
+  position: relative;
+  margin: 0;
+} */
+
+.question-wrapper {
+  display: none;
+}
+
+/* Общие стили для плейсхолдеров */
+.ProseMirror [data-type].is-editor-empty:before,
+.ProseMirror p.is-editor-empty:before {
+  color: #aaa;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* FAQ ответы - показываем плейсхолдер только для первого параграфа в каждом ответе */
+.ProseMirror .answer-content p:not(:first-of-type).is-editor-empty:before {
+  content: none;
+}
+
+/* User Story реализация - показываем плейсхолдер только для первого параграфа */
+.ProseMirror .userstory-implementation p:not(:first-child).is-editor-empty:before {
+  content: none;
+}
+
+/* User Story критерии - показываем плейсхолдер только для первого пустого пункта */
+.ProseMirror .userstory-criteria .bulletList li:not(:first-child) p.is-editor-empty:before,
+.ProseMirror .userstory-criteria .bulletList li:first-child:not(:only-child) p.is-editor-empty:before {
+  content: none;
+}
+
+.drag-handle {
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: move;
+  padding: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: #666;
+  font-size: 16px;
+  user-select: none;
+}
+
+.faq-item:hover .drag-handle {
+  opacity: 1;
+}
+
+/* .faq-item.dragging {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.editor-toggle {
+  display: flex;
+  /* gap: 8px; */
+}
+
+.toggle-btn {
+  padding: 8px 16px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #666;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.toggle-btn.active {
+  background: #515355;
+  color: white;
+  border-color: #515355;
+}
+
+.toggle-btn.active:hover {
+  background: #151616;
+}
+
+.userstory-editor {
+  min-height: 500px;
+  position: relative;
+  padding: 0 32px;
+}
+
+.userstory-title {
+  /* font-weight: 600; */
+  font-size: 24px;
+  color: #0f172a;
+  margin: 0 0 16px 0;
+  line-height: 32px;
+  letter-spacing: -0.3px;
+}
+
+/* .ProseMirror .userstory-criteria li p.is-empty:before {
+  content: 'Добавьте критерий...';
+  color: #aaa;
+  float: left;
+  pointer-events: none;
+  height: 0;
+} */
+
+/* Обновляем стиль для плейсхолдера реализации */
+.ProseMirror .userstory-implementation p:not(:first-child).is-empty:before {
+  content: none;
+}
+
+/* .ProseMirror .userstory-criteria:empty:before {
+  content: 'Добавьте критерии...';
+  color: #aaa;
+  font-style: italic;
+  pointer-events: none;
+} */
+
+.toggle-implementation-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  margin: 16px 0;
+  transition: all 0.2s;
+}
+
+.toggle-implementation-btn:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.userstory-implementation-container {
+  /* display: ${showImplementation ? 'block' : 'none'}; */
+  margin: 8px 0 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.userstory-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.clear-btn {
+  background: transparent;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.clear-btn:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
