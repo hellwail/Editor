@@ -25,6 +25,8 @@ const BaseEditor = ({
       StarterKit.configure({
         document: false,
         heading: false,
+        bulletList: false,
+        listItem: {}
       }),
       ...extensions,
       Placeholder.configure({

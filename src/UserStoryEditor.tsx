@@ -13,10 +13,10 @@ import {
 } from './UserStorySchemas';
 
 const placeholders = {
-  userStoryTitle: 'Введите заголовок...',
-  userStoryQuestion: 'Что? Зачем? Когда?',
-  paragraph: 'Добавьте критерий...',
-  implementationParagraph: 'Опишите реализацию...'
+  userStoryTitle: 'Прототип шаблонов',
+  userStoryQuestion: 'Название инкремента, что получим по результатам',
+  paragraph: 'Критерии выполнения',
+  implementationParagraph: 'Реализация'
 };
 
 const initialContent = `{
